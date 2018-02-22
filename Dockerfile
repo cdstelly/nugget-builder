@@ -40,6 +40,10 @@ RUN go build src/github.com/cdstelly/nugget/nugget.go
 #####################
 ## Nugget Runtime  ##
 #####################
+RUN apt-get install -y supervisor 
+RUN mkdir -p /var/log/supervisor
+RUN mkdir -p /var/log/nugget
+COPY nuggetruntime.conf /etc/supervisor/conf.d/nuggetruntime.conf
 
 # TSK 
 WORKDIR "/nuggetTSK"
@@ -53,15 +57,11 @@ RUN git clone git@github.com:cdstelly/goVolRPC
 ENV GOPATH /nuggetVol/goVolRPC
 RUN go build /nuggetVol/goVolRPC/goVol.go
 
-# Start Nugget Runtime as services
-WORKDIR "/"
-ADD runVolAndTSK.sh /
-CMD ["/runVolAndTSK.sh"]
-
-
 # M57 datasets: https://digitalcorpora.org/corpora/scenarios/m57-patents-scenario
 ADD jo-favorites-usb-2009-12-11.E01 /targets/
 ADD jo-2009-12-11.mddramimage /targets/
-# Bash? Nugget
 
-
+# Start Nugget Runtime as services
+WORKDIR "/"
+# CMD ["supervisord"]
+CMD supervisord && bash

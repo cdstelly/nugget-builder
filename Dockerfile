@@ -33,13 +33,8 @@ RUN apt-get install -y volatility volatility-tools
 ## Nugget    ##
 ###############
 
-## Dev key
-ADD github_id_rsa /root/.ssh/id_rsa
-RUN chmod 600 /root/.ssh/id_rsa
-RUN touch /root/.ssh/known_hosts
-RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 ## Build nugget
-RUN git clone git@github.com:cdstelly/nugget
+RUN git clone https://github.com/cdstelly/nugget
 WORKDIR "/nugget"
 ENV GOPATH="/nugget"
 RUN go get ./...
@@ -56,13 +51,13 @@ COPY nuggetruntime.conf /etc/supervisor/conf.d/nuggetruntime.conf
 
 # TSK 
 WORKDIR "/nuggetTSK"
-RUN git clone git@github.com:cdstelly/goTSKRPC
+RUN git clone https://ithub.com/cdstelly/goTSKRPC
 ENV GOPATH /nuggetTSK/goTSKRPC
 RUN go build /nuggetTSK/goTSKRPC/goTSK.go
 
 # VOL
 WORKDIR "/nuggetVol"
-RUN git clone git@github.com:cdstelly/goVolRPC
+RUN git clone https://github.com/cdstelly/goVolRPC
 ENV GOPATH /nuggetVol/goVolRPC
 RUN go build /nuggetVol/goVolRPC/goVol.go
 

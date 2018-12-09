@@ -51,7 +51,7 @@ COPY nuggetruntime.conf /etc/supervisor/conf.d/nuggetruntime.conf
 
 # TSK 
 WORKDIR "/nuggetTSK"
-RUN git clone https://ithub.com/cdstelly/goTSKRPC
+RUN git clone https://github.com/cdstelly/goTSKRPC
 ENV GOPATH /nuggetTSK/goTSKRPC
 RUN go build /nuggetTSK/goTSKRPC/goTSK.go
 

@@ -6,7 +6,7 @@ RUN apt-get install -y procps net-tools
 ###############
 ## Go        ##
 ###############
-RUN apt-get install -y wget
+RUN apt-get install -y wget unzip
 RUN wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz
 RUN tar -zxvf  go1.9.2.linux-amd64.tar.gz -C /usr/local/
 ENV PATH="${PATH}:/usr/local/go/bin"

@@ -36,6 +36,7 @@ RUN apt-get install -y volatility volatility-tools
 ## Build nugget
 ## For the autopush (used by CI), we need to add the current code from this directory 
 ADD nugget.zip
+RUN unzip nugget.zip
 WORKDIR "/nugget"
 ENV GOPATH="/nugget"
 RUN go get ...

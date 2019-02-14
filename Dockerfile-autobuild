@@ -42,7 +42,7 @@ RUN unzip nugget.zip -d /nugget/
 RUN ls / && pwd && ls /nugget/
 WORKDIR "/nugget"
 ENV GOPATH="/nugget"
-RUN go get ...
+RUN go get ./...
 RUN go build src/github.com/cdstelly/nugget/nugget.go
 
 
